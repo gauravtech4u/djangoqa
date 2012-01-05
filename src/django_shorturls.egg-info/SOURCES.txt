@@ -1,0 +1,8 @@
+README
+setup.py
+src/django_shorturls.egg-info/PKG-INFO
+src/django_shorturls.egg-info/SOURCES.txt
+src/django_shorturls.egg-info/dependency_links.txt
+src/django_shorturls.egg-info/requires.txt
+src/django_shorturls.egg-info/top_level.txt
+src/qna/__init__.py
