@@ -1,0 +1,3 @@
+downloads tar
+add app to INSTALLED_APPS in settings.py
+run syncdb and you are good to go
