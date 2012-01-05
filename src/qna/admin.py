@@ -19,6 +19,7 @@ class QuestionChoiceInline(admin.StackedInline):
 
 
 class QuestionAdmin(admin.ModelAdmin):
+    list_filter = ('type',)
     list_display = ( 'description','type', )
     inlines = [QuestionChoiceInline,]
     readonly_fields=('created_date',)

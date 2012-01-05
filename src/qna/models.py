@@ -29,6 +29,7 @@ class Post(models.Model):
     objects=models.Manager()
 
 class Questionnaire(Post):
+    """ Questionnaire having multiple questions """
     name                     =  models.CharField(max_length = 300)
     slug                     =  models.SlugField(max_length = 255, unique = True)
     def __unicode__(self):
@@ -38,12 +39,16 @@ class Questionnaire(Post):
     qa_manager=QuestionnaireManager()
 
 class Question(Post):
+    """ Questions of type open or multiple-choice """
     questionnaire = models.ForeignKey(Questionnaire)
     type = models.CharField(choices=(('open','OPEN'),('multiple-choice','MULTIPLE CHOICE'),),max_length=100,default='open')
     description = models.TextField(blank=True)
     user = models.ForeignKey(User, blank=True, null=True)
     def __unicode__(self):
         return self.description[:20]
+    
+    class Meta:
+        unique_together = ( 'questionnaire', 'description' )
         
     objects=models.Manager()
     open_questions=OpenQuestionManager()
@@ -56,6 +61,9 @@ class QuestionChoice(Post):
     
     def __unicode__(self):
         return self.description[:40]
+        
+    class Meta:
+        unique_together = ( 'question', 'description' )
     
 class Answer(Post):
     user = models.ForeignKey(User)
